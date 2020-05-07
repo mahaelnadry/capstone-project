@@ -51,7 +51,7 @@ Movie
 class Movie(db.Model):  
   __tablename__ = 'movies'
 
-  id = Column(Integer, primary_key=True)
+  id = Column(Integer, primary_key=True, autoincrement=True)
   title = Column(String)
   release_date=Column(Date)
   #many to many relationship
@@ -90,7 +90,7 @@ Actor
 class Actor(db.Model):  
   __tablename__ = 'actors'
 
-  id = Column(Integer, primary_key=True)
+  id = Column(Integer, primary_key=True, autoincrement=True)
   name = Column(String)
   age = Column(Integer)
   gender = Column(String)
@@ -99,17 +99,30 @@ class Actor(db.Model):
 
 
 
-  def __init__(self, name, age, gender):
-    self.name = name
-    self.age = age
-    self.gender = gender
+ ## def __init__(self, name, age, gender):
+  ##  self.name = name
+  ##  self.age = age
+   ## self.gender = gender
+
+  def insert(self):
+    #print("insert",self.name,self.age)
+    db.session.add(self)
+    db.session.commit()
+  
+  def update(self):
+    db.session.commit()
+
+  def delete(self):
+    db.session.delete(self)
+    db.session.commit()
 
   def format(self):
     return {
       'id': self.id,
       'name': self.name,
       'age': self.age,
-      'gender': self.gender
+      'gender': self.gender,
+      #'movies':self.movies
     }
 
  
