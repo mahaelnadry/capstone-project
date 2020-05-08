@@ -2,9 +2,8 @@ import os
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-
 from models import db_drop_and_create_all, setup_db, Movie, Actor, Movie_Actor
-#from .auth.auth import AuthError, requires_auth
+from auth import AuthError, requires_auth
 
 def create_app(test_config=None):
   # create and configure the app
@@ -15,19 +14,20 @@ def create_app(test_config=None):
   ## THIS WILL DROP ALL RECORDS AND START YOUR DB FROM SCRATCH
   #db_drop_and_create_all()
   cors=CORS(app,resources={r"/api/*":{"origins":"*"}})
-  ''' 
+
   @app.after_request
   def after_request(response):
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization, true')
     response.headers.add('Access-Control-Allow-Methods','GET,PATCH,POST,DELETE,OPTIONS')
     return response
-  ''' 
+   
   @app.route('/movies', methods=['GET'])
-  def get_movies():
-    try:
-        movies = Movie.query.all()
-        if len(movies) == 0:
-            abort(404)
+  @requires_auth('get:movies')
+  def get_movies(self):
+    movies = Movie.query.all()
+    if len(movies) == 0:
+      abort(404)
+    try:  
         formatted_movies = []
         for movie in movies:
             formatted_movies.append(movie.format())
@@ -40,12 +40,13 @@ def create_app(test_config=None):
         abort(400)
   
   @app.route('/actors', methods=['GET'])
-  def get_actors():
+  @requires_auth('get:actors')
+  def get_actors(self):
+    actors = Actor.query.all()
+    print(actors)
+    if len(actors) == 0:
+      abort(404)
     try:
-        actors = Actor.query.all()
-        print(actors)
-        if len(actors) == 0:
-            abort(404)
         formatted_actors = []
         for actor in actors:
             formatted_actors.append(actor.format())
@@ -58,9 +59,9 @@ def create_app(test_config=None):
         abort(400)
 
   @app.route('/actors' , methods=['POST'])
-  #@requires_auth('post:drinks')
-  #def add_actor(self):
-  def add_actor():  
+  @requires_auth('post:actors')
+  def add_actor(self):
+  #def add_actor():  
     try:
       data = request.get_json()
       actor=Actor(name=data['name'],age=data['age'],gender=data['gender'])
@@ -74,9 +75,8 @@ def create_app(test_config=None):
       abort(422)
 
   @app.route('/movies' , methods=['POST'])
-  #@requires_auth('post:drinks')
-  #def add_actor(self):
-  def add_movie():  
+  @requires_auth('post:movies')
+  def add_movie(self):  
     try:
       data = request.get_json()
       movie=Movie(title=data['title'],release_date=data['release_date'])
@@ -91,15 +91,14 @@ def create_app(test_config=None):
 
 
   @app.route('/actors/<int:actor_id>' , methods=['PATCH'])
-  #@requires_auth('post:drinks')
-  #def update_actor(self):
-  def update_actor(actor_id):  
+  @requires_auth('patch:actors')
+  def update_actor(self,actor_id):  
+    data = request.get_json()
+    actor=Actor.query.filter(Actor.id == actor_id).one_or_none()
+    #actor=Actor(name=data['name'],age=data['age'],gender=data['gender'])
+    if actor is None:
+      abort(404) ##the abort outside try works right
     try:
-      data = request.get_json()
-      actor=Actor.query.filter(Actor.id == actor_id).one_or_none()
-      #actor=Actor(name=data['name'],age=data['age'],gender=data['gender'])
-      if actor is None:
-        abort(404)
       for key in data.keys():
         if key=='name':
           actor.name = data[key]
@@ -117,14 +116,13 @@ def create_app(test_config=None):
       abort(404)
   
   @app.route('/movies/<int:movie_id>' , methods=['PATCH'])
-  #@requires_auth('post:drinks')
-  #def update_actor(self):
-  def update_movie(movie_id):  
+  @requires_auth('patch:movies')
+  def update_movie(self,movie_id):  
+    data = request.get_json()
+    movie=Movie.query.filter(Movie.id == movie_id).one_or_none()
+    if movie is None:
+      abort(404) ##the abort outside try works right
     try:
-      data = request.get_json()
-      movie=Movie.query.filter(Movie.id == movie_id).one_or_none()
-      if movie is None:
-        abort(404)
       for key in data.keys():
         if key=='title':
           movie.title = data[key]
@@ -140,13 +138,12 @@ def create_app(test_config=None):
       abort(404)
 
   @app.route('/actors/<int:actor_id>' , methods=['DELETE'])
-  ##@requires_auth('delete:drinks')
-  ##def delete_actor(self,actor_id):
-  def delete_actor(actor_id):
-      try:
-          actor=Actor.query.get(actor_id)
-          if actor is None:
-              abort(404)
+  @requires_auth('delete:actors')
+  def delete_actor(self,actor_id):
+      actor=Actor.query.get(actor_id)
+      if actor is None:
+        abort(404) ##the abort outside try works right
+      try:  
           actor.delete()
           return jsonify({
           'success':True,
@@ -157,13 +154,12 @@ def create_app(test_config=None):
           abort(404)
 
   @app.route('/movies/<int:movie_id>' , methods=['DELETE'])
-  ##@requires_auth('delete:drinks')
-  ##def delete_actor(self,actor_id):
-  def delete_movie(movie_id):
-      try:
-          movie=Movie.query.get(movie_id)
-          if movie is None:
-              abort(404)
+  @requires_auth('delete:movies')
+  def delete_movie(self,movie_id):
+      movie=Movie.query.get(movie_id)
+      if movie is None:
+        abort(404)  ##the abort outside try works right
+      try:  
           movie.delete()
           return jsonify({
           'success':True,
@@ -197,7 +193,7 @@ def create_app(test_config=None):
           'error':400,
           'message':"Bad Request"
       }), 400 
-  ''' 
+
   @app.errorhandler(AuthError)
   def auth_error(Error):
         return jsonify({
@@ -206,7 +202,7 @@ def create_app(test_config=None):
           'message':Error.error['code'],
           'description':Error.error['description']
       }),401  ##401 is the status code returned
-  ''' 
+ 
   
   return app
 
