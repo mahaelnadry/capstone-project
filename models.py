@@ -6,12 +6,12 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 from boto.s3.connection import S3Connection
 
-#SQLALCHEMY_ECHO=True
+SQLALCHEMY_ECHO=True
 # Connect to the database
 #SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/castingAgency'
 #SQLALCHEMY_TRACK_MODIFICATIONS=False
 
-SQLALCHEMY_ECHO=os.environ["SQLALCHEMY_ECHO"]
+#SQLALCHEMY_ECHO=os.environ["SQLALCHEMY_ECHO"]
 # Connect to the database
 SQLALCHEMY_DATABASE_URI = os.environ["SQLALCHEMY_DATABASE_URI"]
 SQLALCHEMY_TRACK_MODIFICATIONS= os.environ["SQLALCHEMY_TRACK_MODIFICATIONS"]
