@@ -4,9 +4,17 @@ from sqlalchemy import Column, String, Integer,Date, ForeignKey, create_engine, 
 from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 import json
-import config
+from boto.s3.connection import S3Connection
 
+SQLALCHEMY_ECHO=True
+# Connect to the database
+SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/castingAgency'
+SQLALCHEMY_TRACK_MODIFICATIONS=False
 
+#SQLALCHEMY_ECHO=os.environ["SQLALCHEMY_ECHO"]
+# Connect to the database
+#SQLALCHEMY_DATABASE_URI = os.environ["SQLALCHEMY_DATABASE_URI"]
+#SQLALCHEMY_TRACK_MODIFICATIONS= os.environ["SQLALCHEMY_TRACK_MODIFICATIONS"]
 
 db = SQLAlchemy()
 
@@ -15,9 +23,9 @@ setup_db(app)
     binds a flask application and a SQLAlchemy service
 '''
 def setup_db(app):
-  app.config["SQLALCHEMY_DATABASE_URI"] =config.SQLALCHEMY_DATABASE_URI
-  app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = config.SQLALCHEMY_TRACK_MODIFICATIONS
-  app.config["SQLALCHEMY_ECHO"]=config.SQLALCHEMY_ECHO
+  app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+  app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = SQLALCHEMY_TRACK_MODIFICATIONS
+  app.config["SQLALCHEMY_ECHO"]= SQLALCHEMY_ECHO
   db.app = app
   db.init_app(app)
 
