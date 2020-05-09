@@ -4,12 +4,13 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 import os
-from boto.s3.connection import S3Connection
+from boto.s3.connection import S3Connection  ##to read environment variables from heroku
 
-#AUTH0_DOMAIN = 'dev-uo1xu38y.auth0.com'
-#ALGORITHMS = ['RS256']
-#API_AUDIENCE = 'casting_agency'
-
+'''
+AUTH0_DOMAIN = 'dev-uo1xu38y.auth0.com'
+ALGORITHMS = ['RS256']
+API_AUDIENCE = 'casting_agency'
+'''
 AUTH0_DOMAIN = os.environ["AUTH0_DOMAIN"]
 ALGORITHMS = os.environ["ALGORITHMS"]
 API_AUDIENCE = os.environ["API_AUDIENCE"]

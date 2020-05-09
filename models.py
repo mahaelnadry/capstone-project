@@ -4,15 +4,15 @@ from sqlalchemy import Column, String, Integer,Date, ForeignKey, create_engine, 
 from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 import json
-from boto.s3.connection import S3Connection
+from boto.s3.connection import S3Connection ##to read environment variables from heroku
 
 SQLALCHEMY_ECHO=True
-# Connect to the database
-#SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/castingAgency'
-#SQLALCHEMY_TRACK_MODIFICATIONS=False
-
+'''
+SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/castingAgency'
+SQLALCHEMY_TRACK_MODIFICATIONS=True
+'''
 #SQLALCHEMY_ECHO=os.environ["SQLALCHEMY_ECHO"]
-# Connect to the database
+
 SQLALCHEMY_DATABASE_URI = os.environ["SQLALCHEMY_DATABASE_URI"]
 SQLALCHEMY_TRACK_MODIFICATIONS= os.environ["SQLALCHEMY_TRACK_MODIFICATIONS"]
 
