@@ -80,7 +80,7 @@ DELETE '/actors/{actor_id}'
 
 ## GET '/movies'
 - Fetches movies that are currently saved in the database
-- Request Arguments: None
+- Request Arguments: Bearer JWT token should be passed in 'Authorization'
 - Returns: An array of movies, each movie object has id, release_date and title 
 {
   "movies": [
@@ -105,7 +105,7 @@ DELETE '/actors/{actor_id}'
 
 ## GET '/actors'
 - Fetches actors that are currently saved in the database
-- Request Arguments: None
+- Request Arguments: Bearer JWT token should be passed in 'Authorization'
 - Returns: An array of actors, each actor object has id, gender, age and name. 
 {
   "actors": [
@@ -127,6 +127,7 @@ DELETE '/actors/{actor_id}'
 
 ## POST '/movies'
 - Creates a new movie using the passed title and release date
+- Request Arguments: Bearer JWT token should be passed in 'Authorization'
 - Request body:
 {
 	"title":"Jungle book",
@@ -144,6 +145,7 @@ DELETE '/actors/{actor_id}'
 
 ## POST '/actors'
 - Creates a new actor using the passed age, gender and name
+- Request Arguments: Bearer JWT token should be passed in 'Authorization'
 - Request body:
 {
 	"age":30,
@@ -163,7 +165,7 @@ DELETE '/actors/{actor_id}'
 
 ## PATCH '/movies/{movie_id}'
 - Patch an already created movie title or release_date or both of them if both of them are passed if this movie exits
-- Request Arguments: movie_id (Integer)
+- Request Arguments: movie_id (Integer), Bearer JWT token should be passed in 'Authorization'
 - Request body:
 {
 	"title":"Jungle book Part2",
@@ -180,7 +182,7 @@ DELETE '/actors/{actor_id}'
 
 ## PATCH '/actors/{actor_id}'
 - Patches an already created actor age or gender or name or all of them if all of them are passed in the request body if this actor exists
-- Request Arguments: actor_id (Integer)
+- Request Arguments: actor_id (Integer), Bearer JWT token should be passed in 'Authorization'
 - Request body:
 {
 	"age":50,
@@ -198,7 +200,7 @@ DELETE '/actors/{actor_id}'
 
 ## DELETE '/movies/{movie_id}'
 - Deletes the movie with the given ID if this movie exits
-- Request Arguments: movie_id (Integer)
+- Request Arguments: movie_id (Integer), Bearer JWT token should be passed in 'Authorization'
 - Returns the id of the deleted movie in key called "delete" and success value
 {
   "delete": 15,
@@ -207,7 +209,7 @@ DELETE '/actors/{actor_id}'
 
 ## DELETE '/actors/{actor_id}'
 - Deletes the actor with the given ID if this actor exits
-- Request Arguments: actor_id (Integer)
+- Request Arguments: actor_id (Integer), Bearer JWT token should be passed in 'Authorization'
 - Returns the id of the deleted actor in key called "delete" and success value
 {
   "delete": 4,
@@ -221,6 +223,8 @@ dropdb castingAgency
 createdb castingAgency
 python test_app.py
 ```
+python test_app.py should be run while activating the virtual environment
+
 but the database should be filled first with at least 4 movies and 3 actors in order that the patch and delete tests works fine,
 there should be movies of Ids 2,3,4 and there should be actors of Ids 2 and 3
  you can use the postman collection 'casting_agency_postman_collection.postman_collection'   in the 'capstone_project' directory  to fill the database
