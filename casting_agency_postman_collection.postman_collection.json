@@ -389,7 +389,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"title\":\"Movie2fffNew\",\r\n\t\"release_date\":\"2020-01-04\"\r\n}",
+							"raw": "{\r\n\t\"title\":\"Movie4 NEw\",\r\n\t\"release_date\":\"2020-01-04\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -673,14 +673,14 @@
 	],
 	"variable": [
 		{
-			"id": "4f573d4a-852f-4bbd-a562-1ed6fba542d3",
-			"key": "host",
+			"id": "7a599c43-bc95-4248-9411-5b7545f4d478",
+			"key": "host_local",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "c8b90c3a-e06e-46da-bba6-6c3a9eccb8aa",
-			"key": "host2",
+			"id": "faf9cbe6-bd28-4269-b14a-978020487d1a",
+			"key": "host",
 			"value": "",
 			"type": "string"
 		}
