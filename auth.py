@@ -6,7 +6,7 @@ from urllib.request import urlopen
 import os
 from boto.s3.connection import S3Connection  ##to read environment variables from heroku
 
-
+'''
 AUTH0_DOMAIN = 'dev-uo1xu38y.auth0.com'
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'casting_agency'
@@ -14,7 +14,7 @@ API_AUDIENCE = 'casting_agency'
 AUTH0_DOMAIN = os.environ["AUTH0_DOMAIN"]
 ALGORITHMS = os.environ["ALGORITHMS"]
 API_AUDIENCE = os.environ["API_AUDIENCE"]
-'''
+
 ##use this link for login https://dev-uo1xu38y.auth0.com/login?state=g6Fo2SBiRVdXakNCYi1DZko0NUFvQV9oWVRWSTBLa01ZSko1aKN0aWTZIE5BeDhuajZGWEZMTjdycml5SDA4SlA2WC04LXBzZlRYo2NpZNkgOHZRVzc5a1U1dkUzQkpwcm8zYlhmUTR5ZDRWeDU1b2I&client=8vQW79kU5vE3BJpro3bXfQ4yd4Vx55ob&protocol=oauth2&audience=casting_agency&response_type=token&redirect_uri=https%3A%2F%2Fwww.google.com%2F
 
 ## AuthError Exception
