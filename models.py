@@ -1,21 +1,19 @@
 import os
 from sqlalchemy import Column, String, Integer,Date, ForeignKey, create_engine, Table
-#from sqlalchemy import *
 from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 import json
 from boto.s3.connection import S3Connection ##to read environment variables from heroku
 
-SQLALCHEMY_ECHO=True
-'''
-SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/castingAgency'
-SQLALCHEMY_TRACK_MODIFICATIONS=True
-'''
-#SQLALCHEMY_ECHO=os.environ["SQLALCHEMY_ECHO"]
+SQLALCHEMY_ECHO=False
 
+SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/castingAgency'
+SQLALCHEMY_TRACK_MODIFICATIONS=False
+'''
 SQLALCHEMY_DATABASE_URI = os.environ["SQLALCHEMY_DATABASE_URI"]
 SQLALCHEMY_TRACK_MODIFICATIONS= os.environ["SQLALCHEMY_TRACK_MODIFICATIONS"]
-
+#SQLALCHEMY_ECHO=os.environ["SQLALCHEMY_ECHO"]
+'''
 db = SQLAlchemy()
 
 '''
@@ -39,11 +37,7 @@ def db_drop_and_create_all():
   db.drop_all()
   db.create_all()
 
-  
-# association table
-#movies_actors = db.Table('movies_actors', Base.metadata,
-#Column('movie_id', db.ForeignKey('movies.id'), primary_key=True),
-#Column('actor_id', db.ForeignKey('actors.id'), primary_key=True))   
+
 '''
 Association table between Movie and Actor resulted from the many to many relationship between them
 '''
@@ -65,13 +59,6 @@ class Movie(db.Model):
   #many to many relationship
   actors = relationship('Actor', secondary='movies_actors', back_populates='movies')
 
-  #answer = Column(String)
-  #category = Column(String)
-  #difficulty = Column(Integer)
-
-  def __init__(self, title, release_date):
-    self.title = title
-    self.release_date = release_date
 
   def insert(self):
     db.session.add(self)
@@ -106,14 +93,7 @@ class Actor(db.Model):
   movies = relationship('Movie', secondary='movies_actors', back_populates='actors')
 
 
-
- ## def __init__(self, name, age, gender):
-  ##  self.name = name
-  ##  self.age = age
-   ## self.gender = gender
-
   def insert(self):
-    #print("insert",self.name,self.age)
     db.session.add(self)
     db.session.commit()
   
@@ -130,7 +110,6 @@ class Actor(db.Model):
       'name': self.name,
       'age': self.age,
       'gender': self.gender,
-      #'movies':self.movies
     }
 
  

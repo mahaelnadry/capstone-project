@@ -10,8 +10,10 @@ def create_app(test_config=None):
   app = Flask(__name__)
   setup_db(app)
   CORS(app)
+  
   ##uncomment the following line to initialize the datbase
   ## THIS WILL DROP ALL RECORDS AND START YOUR DB FROM SCRATCH
+  
   #db_drop_and_create_all()
   cors=CORS(app,resources={r"/api/*":{"origins":"*"}})
 
@@ -36,14 +38,13 @@ def create_app(test_config=None):
             'movies': formatted_movies
             })
     except Exception as e:
-        print("Exception is ", e)
+        #print("Exception is ", e)
         abort(400)
   
   @app.route('/actors', methods=['GET'])
   @requires_auth('get:actors')
   def get_actors(self):
     actors = Actor.query.all()
-    print(actors)
     if len(actors) == 0:
       abort(404)
     try:
@@ -55,13 +56,12 @@ def create_app(test_config=None):
             'actors': formatted_actors
             })
     except Exception as e:
-        print("Exception is ", e)
+        #print("Exception is ", e)
         abort(400)
 
   @app.route('/actors' , methods=['POST'])
   @requires_auth('post:actors')
   def add_actor(self):
-  #def add_actor():  
     try:
       data = request.get_json()
       actor=Actor(name=data['name'],age=data['age'],gender=data['gender'])
@@ -71,7 +71,7 @@ def create_app(test_config=None):
         'actor':actor.format()
       })
     except Exception as e:
-      print("exception is ",e)
+      #print("exception is ",e)
       abort(422)
 
   @app.route('/movies' , methods=['POST'])
@@ -86,7 +86,7 @@ def create_app(test_config=None):
         'movie':movie.format()
       })
     except Exception as e:
-      print("exception is ",e)
+      #print("exception is ",e)
       abort(422)
 
 
@@ -95,7 +95,6 @@ def create_app(test_config=None):
   def update_actor(self,actor_id):  
     data = request.get_json()
     actor=Actor.query.filter(Actor.id == actor_id).one_or_none()
-    #actor=Actor(name=data['name'],age=data['age'],gender=data['gender'])
     if actor is None:
       abort(404) ##the abort outside try works right
     try:
@@ -112,7 +111,7 @@ def create_app(test_config=None):
         'actor':actor.format()
       })
     except Exception as e:
-      print("exception is ",e)
+      #print("exception is ",e)
       abort(404)
   
   @app.route('/movies/<int:movie_id>' , methods=['PATCH'])
@@ -134,7 +133,7 @@ def create_app(test_config=None):
         'movie':movie.format()
       })
     except Exception as e:
-      print("exception is ",e)
+      #print("exception is ",e)
       abort(404)
 
   @app.route('/actors/<int:actor_id>' , methods=['DELETE'])
@@ -167,9 +166,10 @@ def create_app(test_config=None):
           })
       except Exception as e:
           #print("exception",e)
-          abort(404)        
-  ## Error Handling
+          abort(404) 
 
+
+  ## Error Handling
   @app.errorhandler(422)
   def unprocessable(error):
       return jsonify({
@@ -209,5 +209,4 @@ def create_app(test_config=None):
 APP = create_app()
 
 if __name__ == '__main__':
-    ##APP.run() ##default port
    APP.run(host='0.0.0.0', port=8080, debug=True)

@@ -1,0 +1,689 @@
+{
+	"info": {
+		"_postman_id": "db9a45ca-bb58-4875-ba83-21d7cd8cd49f",
+		"name": "casting_agency_postman_collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Casting Assistant",
+			"item": [
+				{
+					"name": "get movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "get actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/actors"
+					},
+					"response": []
+				},
+				{
+					"name": "post actor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Amr Diab\",\n\t\"gender\":\"Male\",\n\t\"age\":50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors"
+					},
+					"response": []
+				},
+				{
+					"name": "patch actor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"age\":5,\n\t\"gender\": \"Female\",\n    \"name\": \"MahaNewwww\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors/2"
+					},
+					"response": []
+				},
+				{
+					"name": "post movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"Movie2\",\n\t\"release_date\":\"2020-01-04\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "patch movie",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"new movie\",\n\t\"release_date\":\"2020-05-04\"\n\t\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies/2"
+					},
+					"response": []
+				},
+				{
+					"name": "delete actor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors/3"
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies/3"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjFueFlGTERkN0wwMkFBRWpXeDNPVyJ9.eyJpc3MiOiJodHRwczovL2Rldi11bzF4dTM4eS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTgyNzU4OTQ0ODI2NDE3MjM0NjIiLCJhdWQiOlsiY2FzdGluZ19hZ2VuY3kiLCJodHRwczovL2Rldi11bzF4dTM4eS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg5MDU4MTEzLCJleHAiOjE1ODkxNDQ1MTMsImF6cCI6Ijh2UVc3OWtVNXZFM0JKcHJvM2JYZlE0eWQ0Vng1NW9iIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIl19.N68AyitjCQ7tgCj4Dr5GCxu3zp6p0IHQKrph3g2_htOgXcSeKphmL7dd1L0xNHhVuBxjk9Fc0nOzJujukuWE18lZY_uAZWUklN-ie5HSj8EF3Oum6Lpmz5gHrltTKQkVn5zUToZ64Q362-qu4C4bo6Obt86ui55dKXRWxJN7AFLRM6VNIrUd9Fqwfs8extpwE9igT0JWeN5hYEM0Prn9QetdTGIjpK7-of1CFbANBBJozVmfnPRLEFCjZI5nr_XPF3KWZr0cOUpehlei11N1o2cT9gxuN9DreFagZhs6jHgk1e-BWXlnYB6pJS_Z4neZyS0UligWiUgRlIPDCOl4kQ"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d362e0ec-12de-47f7-9dc7-4e598fbfea14",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "876e179f-3c4e-47e7-b9ee-01cda947d70d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Casting Director",
+			"item": [
+				{
+					"name": "get movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "get actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/actors"
+					},
+					"response": []
+				},
+				{
+					"name": "post actor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"age\":5,\n\t\"gender\": \"Male\",\n    \"name\": \"MahaNewwww\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors"
+					},
+					"response": []
+				},
+				{
+					"name": "patch actor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"age\":5,\n\t\"gender\": \"Female\",\n    \"name\": \"MahaNewdddwww\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors/2"
+					},
+					"response": []
+				},
+				{
+					"name": "post movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"Movie2\",\n\t\"release_date\":\"2020-01-04\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "patch movie",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"new movie\",\n\t\"release_date\":\"2020-05-04\"\n\t\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies/2"
+					},
+					"response": []
+				},
+				{
+					"name": "delete actor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"title\": \"MahaNewwww\",\n    \"release_date\":\"2020-02-03\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors/3"
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies/3"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjFueFlGTERkN0wwMkFBRWpXeDNPVyJ9.eyJpc3MiOiJodHRwczovL2Rldi11bzF4dTM4eS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTgyNzU4OTQ0ODI2NDE3MjM0NjIiLCJhdWQiOlsiY2FzdGluZ19hZ2VuY3kiLCJodHRwczovL2Rldi11bzF4dTM4eS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg5MDU3OTk0LCJleHAiOjE1ODkxNDQzOTQsImF6cCI6Ijh2UVc3OWtVNXZFM0JKcHJvM2JYZlE0eWQ0Vng1NW9iIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvcnMiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyIsInBvc3Q6YWN0b3JzIl19.ElHt4Ugz35bWZgTPbMh21d1wtkFuUw0ln_Zj1Id_afNrXOaDYfJF_tkTdZCmbvdOMuPXdAio3VXWXIRqG31qt-5lpdWivlhvy8wmGMWd0dLTGfKZXD9VCGPKtUV57hc1uV9Ob2GZoe5RMlMeU0AcPKXFNA4On--Cb22iVqhMiIhcVUYVGlwJI6cQLOT14PSeAs5kJDTqEqo1QhOE1Th7BV7rId0DsNdwHMXj_PV7GFpdY5VusO7gYg_6zz6aDbtJTqmWaS_M28Jl2J9_DewRHzeiDxuwhXWCt8mtDlF1cC9kcaoaElGQBN7OEZf2vo31oBJZ4lpysy9ybA478ht-fw"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fa469b32-164e-4fd7-bb29-a2ed67e1c10b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "69b2160d-88cf-4878-a5f4-d4a1c5c81372",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Executive Producer",
+			"item": [
+				{
+					"name": "get movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "get actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/actors"
+					},
+					"response": []
+				},
+				{
+					"name": "post actor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"age\":5,\n\t\"gender\": \"Male\",\n    \"name\": \"New actorkkkk\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors"
+					},
+					"response": []
+				},
+				{
+					"name": "patch actor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"age\":5,\n\t\"gender\": \"Female\",\n    \"name\": \"Moldddw\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors/2"
+					},
+					"response": []
+				},
+				{
+					"name": "post movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"title\":\"Movie2fffNew\",\r\n\t\"release_date\":\"2020-01-04\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "patch movie",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"new movie\",\n\t\"release_date\":\"2020-05-04\"\n\t\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies/2"
+					},
+					"response": []
+				},
+				{
+					"name": "delete actor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"title\": \"MahaNewwww\",\n    \"release_date\":\"2020-02-03\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors/3"
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies/3"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjFueFlGTERkN0wwMkFBRWpXeDNPVyJ9.eyJpc3MiOiJodHRwczovL2Rldi11bzF4dTM4eS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTgyNzU4OTQ0ODI2NDE3MjM0NjIiLCJhdWQiOlsiY2FzdGluZ19hZ2VuY3kiLCJodHRwczovL2Rldi11bzF4dTM4eS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg5MDU4MjEyLCJleHAiOjE1ODkxNDQ2MTIsImF6cCI6Ijh2UVc3OWtVNXZFM0JKcHJvM2JYZlE0eWQ0Vng1NW9iIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvcnMiLCJkZWxldGU6bW92aWVzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIl19.BD2HH5PVjZEaKd00cXKmwWMDdeNra0AaAd4bQEH68Cx1kJ-mEin4SQXRcJ-vheqdMcIB2iAXh2ykn91rfMgLB8exFuG1NInSvWODiyoKABEkEQ3nGJ-KfJtTgj61TXh8J-EhSxhkKzhcjEUZsUG4JHqrtNiQkl16uEqs-d-XgwX_4PkMlc-MxCpgCSL3Zf7gBfhAIQFg8laGhObVgRljTyr8fd2g-tg7oPFQIVf65_joxgdUz0bUg8eZKswG-IOgST8TKAkIVbEICaFMsU9ZdZPig3cqGxLD8EHRpjnzejcnqkfXK02eTSPGS9bk-H_wm59LuksErJKn8FubGGNSpA"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "80fd746d-0321-4312-b08c-5473ac1920db",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "51539a90-9ef5-4807-a02b-7c129e2df103",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "get movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "get actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/actors"
+					},
+					"response": []
+				},
+				{
+					"name": "post actor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"age\":5,\n\t\"gender\": \"Male\",\n    \"name\": \"MahaNewwww\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors"
+					},
+					"response": []
+				},
+				{
+					"name": "patch actor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"age\":5,\n\t\"gender\": \"Female\",\n    \"name\": \"MahaNewwww\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors/1"
+					},
+					"response": []
+				},
+				{
+					"name": "post movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"Movie2\",\n\t\"release_date\":\"2020-01-04\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "patch movie",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"new movie\",\n\t\"release_date\":\"2020-05-04\"\n\t\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete actor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"title\": \"MahaNewwww\",\n    \"release_date\":\"2020-02-03\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/actors/2"
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/movies/20"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9247c204-216b-4205-b32e-99ca727638b8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f7a3760c-27eb-4ba3-9d79-463dc10b7f7a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjFueFlGTERkN0wwMkFBRWpXeDNPVyJ9.eyJpc3MiOiJodHRwczovL2Rldi11bzF4dTM4eS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTgyNzU4OTQ0ODI2NDE3MjM0NjIiLCJhdWQiOlsiY2FzdGluZ19hZ2VuY3kiLCJodHRwczovL2Rldi11bzF4dTM4eS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg4OTY5ODA2LCJleHAiOjE1ODkwNTYyMDYsImF6cCI6Ijh2UVc3OWtVNXZFM0JKcHJvM2JYZlE0eWQ0Vng1NW9iIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIl19.SW2iegbOscDlfnQrOoPIPte1VyBczIEd0fmV1kzDpyPSifa4XNP1tQ2ifiByiqn-VsAaUgm2OdgmhQWKwb_G8g6BlQNbnEHmChQjtr8HnqDofyjkEa3ZDU55uZOfN4vUOH4oYD8UITc4pXrZ2SqqNoqptO1-f69AAP31731ESCVdWUyr56VEZ-FgrNXte47Ir2vfnwKmXe_F5DDe-Tnfuo8ARpp8Lkl1QKQNOM0h2_FTIOO7f7sJteFeu2En7MDb5FTud97dVZoNdCbsFNksXR2psDeDmHhueV2qXyZfReqew5tmf_Gr51_X65VvnSJ6_lWzLbgMUn6nJrvCc8pYLQ"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ec1b314c-cc6a-4b58-a5e6-f312aed601b1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "005cf011-5b72-4c6f-8f7b-71b8245b25eb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "4f573d4a-852f-4bbd-a562-1ed6fba542d3",
+			"key": "host",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "c8b90c3a-e06e-46da-bba6-6c3a9eccb8aa",
+			"key": "host2",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

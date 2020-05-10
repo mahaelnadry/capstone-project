@@ -6,7 +6,7 @@ from urllib.request import urlopen
 import os
 from boto.s3.connection import S3Connection  ##to read environment variables from heroku
 
-'''
+
 AUTH0_DOMAIN = 'dev-uo1xu38y.auth0.com'
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'casting_agency'
@@ -14,7 +14,7 @@ API_AUDIENCE = 'casting_agency'
 AUTH0_DOMAIN = os.environ["AUTH0_DOMAIN"]
 ALGORITHMS = os.environ["ALGORITHMS"]
 API_AUDIENCE = os.environ["API_AUDIENCE"]
-
+'''
 ##use this link for login https://dev-uo1xu38y.auth0.com/login?state=g6Fo2SBiRVdXakNCYi1DZko0NUFvQV9oWVRWSTBLa01ZSko1aKN0aWTZIE5BeDhuajZGWEZMTjdycml5SDA4SlA2WC04LXBzZlRYo2NpZNkgOHZRVzc5a1U1dkUzQkpwcm8zYlhmUTR5ZDRWeDU1b2I&client=8vQW79kU5vE3BJpro3bXfQ4yd4Vx55ob&protocol=oauth2&audience=casting_agency&response_type=token&redirect_uri=https%3A%2F%2Fwww.google.com%2F
 
 ## AuthError Exception
@@ -41,7 +41,6 @@ class AuthError(Exception):
 def get_token_auth_header():
     try:
         auth_header=request.headers['Authorization']
-        ##print(auth_header)
         header_parts=auth_header.split(' ')
         if len(header_parts) !=2:
                 raise AuthError({
@@ -74,7 +73,6 @@ def get_token_auth_header():
     return true otherwise
 '''
 def check_permissions(permission, payload):
-    ##print("payload Permissions",payload['permissions'],"permissions",permission)
     if(permission not in payload['permissions']):
         raise AuthError({
                     'code':'Unauthorized',
@@ -101,23 +99,16 @@ def check_permissions(permission, payload):
 '''
 def verify_decode_jwt(token):
     jsonurl=urlopen('https://'+AUTH0_DOMAIN+'/.well-known/jwks.json')
-    ##print("jsonurl",jsonurl)
     jwks=json.loads(jsonurl.read())
-    ##print("jwks",jwks)
-    ##print("\n")
-    ##print("token",token)
     unverified_header=jwt.get_unverified_header(token)
-    ##print("unverified_header",unverified_header)
     rsa_key={}
     if 'kid' not in unverified_header:
-        ##print("inside if kid not in")
         raise AuthError({
             'code':'invalid_header',
             'description':'Authorization malformed.'
     },401)
     for key in jwks['keys']:
         if key['kid'] == unverified_header['kid']:
-            ##print("inside if")
             rsa_key={
                 'kty':key['kty'],
                 'kid':key['kid'],
@@ -125,15 +116,14 @@ def verify_decode_jwt(token):
                 'n':key['n'],
                 'e':key['e']
             }
-            ##print("rsa_key",rsa_key)
+
     if rsa_key:
         try:
             payload=jwt.decode(token,rsa_key,
             algorithms=ALGORITHMS,
             audience=API_AUDIENCE,
             issuer='https://'+AUTH0_DOMAIN+'/'
-            )
-            ##print(payload)        
+            )       
             return payload
         except jwt.ExpiredSignatureError:
             print("jwt.ExpiredSignatureError:")
@@ -175,10 +165,8 @@ def requires_auth(permission=''):
         @wraps(f)
         def wrapper(*args, **kwargs):
             token = get_token_auth_header()
-            ##print(token)
             try:
                 payload = verify_decode_jwt(token)
-                print(payload)
                 check_permissions(permission, payload)
             except:
                raise AuthError({
